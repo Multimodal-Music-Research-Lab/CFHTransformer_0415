@@ -1,0 +1,12 @@
+Some weights of the model checkpoint at /public_hw/home/cit_ylju/yinlin/cft研究/pretrained/MERT-v1-95M were not used when initializing MERTModel: ['encoder.pos_conv_embed.conv.weight_g', 'encoder.pos_conv_embed.conv.weight_v']
+- This IS expected if you are initializing MERTModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing MERTModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of MERTModel were not initialized from the model checkpoint at /public_hw/home/cit_ylju/yinlin/cft研究/pretrained/MERT-v1-95M and are newly initialized: ['encoder.pos_conv_embed.conv.parametrizations.weight.original0', 'encoder.pos_conv_embed.conv.parametrizations.weight.original1']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/public_hw/home/cit_ylju/conda_envs/mert_old_py312_cu121/lib/python3.12/site-packages/torch/nn/modules/transformer.py:379: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/public_hw/home/cit_ylju/yinlin/cft研究/code/ssl_cft/mert25ms其他改进/mert_cft-main_baseline_baseline_25ms_baseline/train_conp_v6_0415.py:929: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler() if device.type == 'cuda' else None
+/public_hw/home/cit_ylju/yinlin/cft研究/code/ssl_cft/mert25ms其他改进/mert_cft-main_baseline_baseline_25ms_baseline/train_conp_v6_0415.py:596: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+slurmstepd: error: *** JOB 88993 ON gpuh08 CANCELLED AT 2026-07-05T18:41:13 ***

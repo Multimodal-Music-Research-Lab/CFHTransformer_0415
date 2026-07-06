@@ -1,0 +1,192 @@
+python /public_hw/home/cit_ylju/conda_envs/mert_old_py312_cu121/bin/python
+python_version 3.12.13
+torch 2.5.1+cu121 cuda 12.1
+transformers 4.41.2
+cuda_available True
+cuda_device_count 1
+gpu NVIDIA H100 80GB HBM3
+2026-07-05 16:18:16 [INFO] Run directory: /public_hw/home/cit_ylju/yinlin/cft研究/code/ssl_cft/mert25ms其他改进/mert_cft-main_baseline_baseline_25ms_baseline/outputs/run_mert_cft22_mix_pitch_3src/20260705_161816_COnP
+2026-07-05 16:18:16 [INFO] Device: cuda
+2026-07-05 16:18:16 [INFO] Config: {'data': {'dataset_name': 'original', 'input_type': 'waveform', 'audio_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal_wav', 'label_path': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/MIR-ST500_corrected.json', 'splits_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/code/ssl_cft/mert25ms其他改进/mert_cft-main_baseline_baseline_25ms_baseline/splits_v11', 'cqt_cache_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/cqt_cache_50ms/npy', 'train_mix_sources': [{'name': 'original', 'audio_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal_wav', 'label_path': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/MIR-ST500_corrected.json', 'splits_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/code/ssl_cft/mert25ms其他改进/mert_cft-main_baseline_baseline_25ms_baseline/splits_v11', 'cqt_cache_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/cqt_cache_50ms/npy'}, {'name': 'pitch_shift', 'audio_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调_wav', 'label_path': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调/MIR-ST500_corrected.json', 'splits_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调/splits_v11', 'cqt_cache_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调/cqt_cache_50ms/npy'}, {'name': 'pitch_shift_complement', 'audio_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400_wav', 'label_path': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400/MIR-ST500_corrected.json', 'splits_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400/splits_v11', 'cqt_cache_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400/cqt_cache_50ms/npy'}], 'sample_rate': 24000, 'segment_frames': 512, 'infer_chunk_frames': 512, 'max_samples_per_epoch': 12000}, 'audio': {'hop_length': 600, 'cqt_bins': 288, 'bins_per_octave': 48, 'n_octaves': 6, 'fmin': 48.9994}, 'model': {'frontend_type': 'wav2vec2', 'wav2vec_path': '/public_hw/home/cit_ylju/yinlin/cft研究/pretrained/MERT-v1-95M', 'wav2vec_freeze_feature_encoder': True, 'wav2vec_dropout': 0.1, 'wav2vec_temporal_adapter': True, 'wav2vec_temporal_kernel': 5, 'wav2vec_temporal_dropout': 0.1, 'wav2vec_temporal_init_scale': 0.001, 'h_dim': 128, 'conv_channels': 32, 'num_cycles': 2, 'num_transformer_layers': 1, 'nhead_fh': 8, 'nhead_ht': 8, 'nhead_tf': 6, 'dim_feedforward': 512, 'dropout': 0.1, 'num_pitches': 48, 'midi_min': 36, 'cqt_mean': -65.0, 'cqt_std': 18.0}, 'training': {'batch_size': 8, 'num_workers': 4, 'learning_rate': 0.0001, 'backbone_learning_rate': 1e-05, 'epochs': 1300, 'run_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/code/ssl_cft/mert25ms其他改进/mert_cft-main_baseline_baseline_25ms_baseline/outputs/run_mert_cft22_mix_pitch_3src', 'save_every': 50, 'grad_clip': 1.0, 'warmup_epochs': 0, 'threshold_search_every': 2, 'threshold_workers': 12, 'threshold_top_k_onset_frame': 2, 'ranked_update_patience': 50}, 'loss': {'onset_weight': 1.0, 'offset_weight': 1.0, 'frame_weight': 1.0, 'onset_pos_weight': 5.0}}
+2026-07-05 16:18:16 [INFO] ============================================================
+2026-07-05 16:18:16 [INFO] CFT v6_0415 — train_conp.py (best model: COnP F1)
+2026-07-05 16:18:16 [INFO] ============================================================
+2026-07-05 16:18:16 [INFO] Loaded GT annotations from /public_hw/home/cit_ylju/yinlin/cft研究/datasets/MIR-ST500_corrected.json
+2026-07-05 16:18:23 [INFO] Train samples: 40644, Val songs: 40, Test songs: 100, Test monitor songs: 100
+2026-07-05 16:18:29 [INFO] Model parameters: 100,126,576
+2026-07-05 16:18:29 [INFO] Tokenization: continuous kernels [3,5,7] (paper-aligned, no dilation)
+2026-07-05 16:18:29 [INFO] Mixed precision (AMP) enabled
+2026-07-05 16:18:32 [INFO] Optimizer: Adam(frontend=1.00e-05, others=1.00e-04)
+2026-07-05 16:18:32 [INFO] Scheduler: CosineAnnealingLR (no warmup, T_max=1300)
+2026-07-05 16:18:32 [INFO] Max batches per epoch: 1500
+2026-07-05 16:18:32 [INFO] Threshold search: every=2, workers=12, top_k_onset_frame=2
+2026-07-05 16:18:32 [INFO] Ranked checkpoint early stop patience: 50 epochs
+2026-07-05 16:20:08 [INFO] Epoch 1 [500/1500] loss=0.0451 onset=0.0219 frame=0.0182 offset=0.0050
+2026-07-05 16:21:41 [INFO] Epoch 1 [1000/1500] loss=0.0364 onset=0.0198 frame=0.0123 offset=0.0043
+2026-07-05 16:23:13 [INFO] Epoch 1 [1500/1500] loss=0.0319 onset=0.0161 frame=0.0117 offset=0.0041
+2026-07-05 16:24:07 [INFO]   Threshold search: best on=0.80, fr=0.55, off=0.10, COn_f1=0.7981, COnP_f1=0.7699, COnPOff_f1=0.5413, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 16:24:31 [INFO] Epoch 1/1300 | train_loss=0.1217 | val_loss=0.0272 | COn_f1=0.8010 | COnP_f1=0.7740 | COnPOff_f1=0.5496 | sig_onset=0.0055 sig_frame=0.0119 | thresh(on=0.80,fr=0.55,off=0.10) | lr=1.00e-04
+2026-07-05 16:24:31 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 16:24:31 [INFO]   -> New val-best epoch recorded. COnP_f1=0.7740
+2026-07-05 16:25:26 [INFO]   [TEST MONITOR FULL TEST:periodic_40+best] COn_f1=0.8027 | COnP_f1=0.7707 | COnPOff_f1=0.5386
+2026-07-05 16:25:27 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.802745_epoch0001.pt, conp1_0.770664_epoch0001.pt, conpoff1_0.538599_epoch0001.pt
+2026-07-05 16:27:02 [INFO] Epoch 2 [500/1500] loss=0.0263 onset=0.0142 frame=0.0086 offset=0.0035
+2026-07-05 16:28:35 [INFO] Epoch 2 [1000/1500] loss=0.0345 onset=0.0192 frame=0.0114 offset=0.0040
+2026-07-05 16:30:07 [INFO] Epoch 2 [1500/1500] loss=0.0220 onset=0.0103 frame=0.0088 offset=0.0029
+2026-07-05 16:30:59 [INFO]   Threshold search: best on=0.80, fr=0.65, off=0.15, COn_f1=0.8144, COnP_f1=0.7903, COnPOff_f1=0.5905, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 16:31:21 [INFO] Epoch 2/1300 | train_loss=0.0297 | val_loss=0.0231 | COn_f1=0.8185 | COnP_f1=0.7947 | COnPOff_f1=0.5988 | sig_onset=0.0062 sig_frame=0.0129 | thresh(on=0.80,fr=0.65,off=0.15) | lr=1.00e-04
+2026-07-05 16:31:21 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 16:31:21 [INFO]   -> New val-best epoch recorded. COnP_f1=0.7947
+2026-07-05 16:32:43 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8196 | COnP_f1=0.7906 | COnPOff_f1=0.5877
+2026-07-05 16:32:46 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.819567_epoch0002.pt, conp1_0.790569_epoch0002.pt, conpoff1_0.587681_epoch0002.pt
+2026-07-05 16:34:20 [INFO] Epoch 3 [500/1500] loss=0.0289 onset=0.0157 frame=0.0099 offset=0.0034
+2026-07-05 16:35:53 [INFO] Epoch 3 [1000/1500] loss=0.0320 onset=0.0164 frame=0.0113 offset=0.0042
+2026-07-05 16:37:26 [INFO] Epoch 3 [1500/1500] loss=0.0230 onset=0.0118 frame=0.0083 offset=0.0029
+2026-07-05 16:37:54 [INFO] Epoch 3/1300 | train_loss=0.0266 | val_loss=0.0216 | COn_f1=0.8218 | COnP_f1=0.8001 | COnPOff_f1=0.6124 | sig_onset=0.0064 sig_frame=0.0128 | thresh(on=0.80,fr=0.65,off=0.15) | lr=1.00e-04
+2026-07-05 16:37:54 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 16:37:54 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8001
+2026-07-05 16:39:14 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8231 | COnP_f1=0.7976 | COnPOff_f1=0.6059
+2026-07-05 16:39:16 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.823116_epoch0003.pt, conp1_0.797621_epoch0003.pt, conpoff1_0.605903_epoch0003.pt
+2026-07-05 16:40:51 [INFO] Epoch 4 [500/1500] loss=0.0328 onset=0.0165 frame=0.0128 offset=0.0036
+2026-07-05 16:42:24 [INFO] Epoch 4 [1000/1500] loss=0.0302 onset=0.0150 frame=0.0118 offset=0.0034
+2026-07-05 16:43:59 [INFO] Epoch 4 [1500/1500] loss=0.0289 onset=0.0166 frame=0.0097 offset=0.0026
+2026-07-05 16:44:55 [INFO]   Threshold search: best on=0.85, fr=0.50, off=0.10, COn_f1=0.8267, COnP_f1=0.8052, COnPOff_f1=0.6114, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 16:45:17 [INFO] Epoch 4/1300 | train_loss=0.0252 | val_loss=0.0206 | COn_f1=0.8302 | COnP_f1=0.8092 | COnPOff_f1=0.6210 | sig_onset=0.0062 sig_frame=0.0129 | thresh(on=0.85,fr=0.50,off=0.10) | lr=1.00e-04
+2026-07-05 16:45:17 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 16:45:17 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8092
+2026-07-05 16:46:21 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8288 | COnP_f1=0.8001 | COnPOff_f1=0.6092
+2026-07-05 16:46:24 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.828838_epoch0004.pt, conp1_0.800072_epoch0004.pt, conpoff1_0.609193_epoch0004.pt
+2026-07-05 16:47:59 [INFO] Epoch 5 [500/1500] loss=0.0339 onset=0.0196 frame=0.0107 offset=0.0036
+2026-07-05 16:49:32 [INFO] Epoch 5 [1000/1500] loss=0.0210 onset=0.0105 frame=0.0077 offset=0.0029
+2026-07-05 16:51:05 [INFO] Epoch 5 [1500/1500] loss=0.0323 onset=0.0172 frame=0.0113 offset=0.0039
+2026-07-05 16:51:35 [INFO] Epoch 5/1300 | train_loss=0.0241 | val_loss=0.0197 | COn_f1=0.8361 | COnP_f1=0.8168 | COnPOff_f1=0.6337 | sig_onset=0.0060 sig_frame=0.0128 | thresh(on=0.85,fr=0.50,off=0.10) | lr=1.00e-04
+2026-07-05 16:51:35 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 16:51:35 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8168
+2026-07-05 16:52:45 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8306 | COnP_f1=0.8030 | COnPOff_f1=0.6181
+2026-07-05 16:52:48 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.830633_epoch0005.pt, conp1_0.803045_epoch0005.pt, conpoff1_0.618085_epoch0005.pt
+2026-07-05 16:54:22 [INFO] Epoch 6 [500/1500] loss=0.0222 onset=0.0124 frame=0.0068 offset=0.0030
+2026-07-05 16:55:55 [INFO] Epoch 6 [1000/1500] loss=0.0234 onset=0.0127 frame=0.0080 offset=0.0027
+2026-07-05 16:57:28 [INFO] Epoch 6 [1500/1500] loss=0.0218 onset=0.0118 frame=0.0076 offset=0.0025
+2026-07-05 16:58:20 [INFO]   Threshold search: best on=0.85, fr=0.30, off=0.05, COn_f1=0.8408, COnP_f1=0.8223, COnPOff_f1=0.6339, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 16:58:54 [INFO] Epoch 6/1300 | train_loss=0.0234 | val_loss=0.0190 | COn_f1=0.8429 | COnP_f1=0.8254 | COnPOff_f1=0.6421 | sig_onset=0.0056 sig_frame=0.0122 | thresh(on=0.85,fr=0.30,off=0.05) | lr=1.00e-04
+2026-07-05 16:58:54 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 16:58:54 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8254
+2026-07-05 17:00:10 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8343 | COnP_f1=0.8067 | COnPOff_f1=0.6181
+2026-07-05 17:00:12 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.834316_epoch0006.pt, conp1_0.806701_epoch0006.pt
+2026-07-05 17:01:47 [INFO] Epoch 7 [500/1500] loss=0.0200 onset=0.0107 frame=0.0065 offset=0.0028
+2026-07-05 17:03:20 [INFO] Epoch 7 [1000/1500] loss=0.0221 onset=0.0115 frame=0.0075 offset=0.0030
+2026-07-05 17:04:53 [INFO] Epoch 7 [1500/1500] loss=0.0199 onset=0.0105 frame=0.0070 offset=0.0024
+2026-07-05 17:05:24 [INFO] Epoch 7/1300 | train_loss=0.0225 | val_loss=0.0186 | COn_f1=0.8497 | COnP_f1=0.8314 | COnPOff_f1=0.6517 | sig_onset=0.0056 sig_frame=0.0127 | thresh(on=0.85,fr=0.30,off=0.05) | lr=1.00e-04
+2026-07-05 17:05:24 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 17:05:24 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8314
+2026-07-05 17:06:23 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8405 | COnP_f1=0.8121 | COnPOff_f1=0.6252
+2026-07-05 17:06:26 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.840548_epoch0007.pt, conp1_0.812108_epoch0007.pt, conpoff1_0.625210_epoch0007.pt
+2026-07-05 17:08:01 [INFO] Epoch 8 [500/1500] loss=0.0242 onset=0.0136 frame=0.0075 offset=0.0031
+2026-07-05 17:09:34 [INFO] Epoch 8 [1000/1500] loss=0.0196 onset=0.0105 frame=0.0063 offset=0.0027
+2026-07-05 17:11:06 [INFO] Epoch 8 [1500/1500] loss=0.0272 onset=0.0143 frame=0.0093 offset=0.0036
+2026-07-05 17:11:59 [INFO]   Threshold search: best on=0.70, fr=0.55, off=0.25, COn_f1=0.8516, COnP_f1=0.8349, COnPOff_f1=0.6681, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 17:12:30 [INFO] Epoch 8/1300 | train_loss=0.0219 | val_loss=0.0182 | COn_f1=0.8523 | COnP_f1=0.8361 | COnPOff_f1=0.6772 | sig_onset=0.0053 sig_frame=0.0120 | thresh(on=0.70,fr=0.55,off=0.25) | lr=1.00e-04
+2026-07-05 17:12:30 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 17:12:30 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8361
+2026-07-05 17:13:56 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8397 | COnP_f1=0.8120 | COnPOff_f1=0.6339
+2026-07-05 17:13:59 [INFO]   -> Ranked checkpoints updated from test100 monitor: con2_0.839671_epoch0008.pt, conp2_0.812040_epoch0008.pt, conpoff1_0.633898_epoch0008.pt
+2026-07-05 17:15:39 [INFO] Epoch 9 [500/1500] loss=0.0258 onset=0.0127 frame=0.0101 offset=0.0030
+2026-07-05 17:17:11 [INFO] Epoch 9 [1000/1500] loss=0.0226 onset=0.0115 frame=0.0083 offset=0.0028
+2026-07-05 17:18:44 [INFO] Epoch 9 [1500/1500] loss=0.0212 onset=0.0116 frame=0.0066 offset=0.0030
+2026-07-05 17:19:19 [INFO] Epoch 9/1300 | train_loss=0.0213 | val_loss=0.0174 | COn_f1=0.8547 | COnP_f1=0.8395 | COnPOff_f1=0.6711 | sig_onset=0.0056 sig_frame=0.0126 | thresh(on=0.70,fr=0.55,off=0.25) | lr=1.00e-04
+2026-07-05 17:19:19 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 17:19:19 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8395
+2026-07-05 17:20:29 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8404 | COnP_f1=0.8123 | COnPOff_f1=0.6153
+2026-07-05 17:20:33 [INFO]   -> Ranked checkpoints updated from test100 monitor: con2_0.840369_epoch0009.pt, conp1_0.812299_epoch0009.pt
+2026-07-05 17:22:08 [INFO] Epoch 10 [500/1500] loss=0.0186 onset=0.0094 frame=0.0063 offset=0.0029
+2026-07-05 17:23:40 [INFO] Epoch 10 [1000/1500] loss=0.0151 onset=0.0078 frame=0.0052 offset=0.0021
+2026-07-05 17:25:13 [INFO] Epoch 10 [1500/1500] loss=0.0226 onset=0.0118 frame=0.0083 offset=0.0026
+2026-07-05 17:26:11 [INFO]   Threshold search: best on=0.80, fr=0.60, off=0.25, COn_f1=0.8591, COnP_f1=0.8465, COnPOff_f1=0.6783, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 17:26:44 [INFO] Epoch 10/1300 | train_loss=0.0209 | val_loss=0.0168 | COn_f1=0.8602 | COnP_f1=0.8488 | COnPOff_f1=0.6866 | sig_onset=0.0055 sig_frame=0.0127 | thresh(on=0.80,fr=0.60,off=0.25) | lr=1.00e-04
+2026-07-05 17:26:44 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 17:26:44 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8488
+2026-07-05 17:27:58 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8418 | COnP_f1=0.8166 | COnPOff_f1=0.6309
+2026-07-05 17:28:03 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.841776_epoch0010.pt, conp1_0.816642_epoch0010.pt
+2026-07-05 17:29:37 [INFO] Epoch 11 [500/1500] loss=0.0219 onset=0.0107 frame=0.0083 offset=0.0028
+2026-07-05 17:31:10 [INFO] Epoch 11 [1000/1500] loss=0.0212 onset=0.0111 frame=0.0070 offset=0.0030
+2026-07-05 17:32:43 [INFO] Epoch 11 [1500/1500] loss=0.0208 onset=0.0107 frame=0.0072 offset=0.0029
+2026-07-05 17:33:16 [INFO] Epoch 11/1300 | train_loss=0.0203 | val_loss=0.0167 | COn_f1=0.8616 | COnP_f1=0.8475 | COnPOff_f1=0.6872 | sig_onset=0.0056 sig_frame=0.0128 | thresh(on=0.80,fr=0.60,off=0.25) | lr=1.00e-04
+2026-07-05 17:33:16 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 17:34:51 [INFO] Epoch 12 [500/1500] loss=0.0165 onset=0.0083 frame=0.0057 offset=0.0025
+2026-07-05 17:36:24 [INFO] Epoch 12 [1000/1500] loss=0.0220 onset=0.0119 frame=0.0075 offset=0.0027
+2026-07-05 17:37:57 [INFO] Epoch 12 [1500/1500] loss=0.0241 onset=0.0133 frame=0.0078 offset=0.0030
+2026-07-05 17:38:48 [INFO]   Threshold search: best on=0.75, fr=0.60, off=0.20, COn_f1=0.8652, COnP_f1=0.8517, COnPOff_f1=0.6911, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 17:39:22 [INFO] Epoch 12/1300 | train_loss=0.0198 | val_loss=0.0161 | COn_f1=0.8654 | COnP_f1=0.8531 | COnPOff_f1=0.7007 | sig_onset=0.0054 sig_frame=0.0123 | thresh(on=0.75,fr=0.60,off=0.20) | lr=1.00e-04
+2026-07-05 17:39:22 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 17:39:22 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8531
+2026-07-05 17:40:40 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8414 | COnP_f1=0.8149 | COnPOff_f1=0.6296
+2026-07-05 17:40:45 [INFO]   -> Ranked checkpoints updated from test100 monitor: con2_0.841392_epoch0012.pt, conp2_0.814935_epoch0012.pt
+2026-07-05 17:42:19 [INFO] Epoch 13 [500/1500] loss=0.0252 onset=0.0136 frame=0.0086 offset=0.0030
+2026-07-05 17:43:52 [INFO] Epoch 13 [1000/1500] loss=0.0161 onset=0.0084 frame=0.0054 offset=0.0022
+2026-07-05 17:45:28 [INFO] Epoch 13 [1500/1500] loss=0.0173 onset=0.0086 frame=0.0062 offset=0.0026
+2026-07-05 17:45:59 [INFO] Epoch 13/1300 | train_loss=0.0196 | val_loss=0.0159 | COn_f1=0.8682 | COnP_f1=0.8563 | COnPOff_f1=0.6993 | sig_onset=0.0053 sig_frame=0.0125 | thresh(on=0.75,fr=0.60,off=0.20) | lr=1.00e-04
+2026-07-05 17:45:59 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 17:45:59 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8563
+2026-07-05 17:47:14 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8425 | COnP_f1=0.8148 | COnPOff_f1=0.6336
+2026-07-05 17:47:19 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.842490_epoch0013.pt
+2026-07-05 17:48:53 [INFO] Epoch 14 [500/1500] loss=0.0205 onset=0.0106 frame=0.0072 offset=0.0027
+2026-07-05 17:50:26 [INFO] Epoch 14 [1000/1500] loss=0.0175 onset=0.0093 frame=0.0058 offset=0.0024
+2026-07-05 17:51:59 [INFO] Epoch 14 [1500/1500] loss=0.0214 onset=0.0107 frame=0.0082 offset=0.0025
+2026-07-05 17:52:51 [INFO]   Threshold search: best on=0.85, fr=0.40, off=0.15, COn_f1=0.8700, COnP_f1=0.8595, COnPOff_f1=0.7040, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 17:53:24 [INFO] Epoch 14/1300 | train_loss=0.0192 | val_loss=0.0156 | COn_f1=0.8715 | COnP_f1=0.8614 | COnPOff_f1=0.7107 | sig_onset=0.0051 sig_frame=0.0123 | thresh(on=0.85,fr=0.40,off=0.15) | lr=1.00e-04
+2026-07-05 17:53:24 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 17:53:24 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8614
+2026-07-05 17:54:20 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8431 | COnP_f1=0.8156 | COnPOff_f1=0.6370
+2026-07-05 17:54:23 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.843050_epoch0014.pt, conp2_0.815615_epoch0014.pt, conpoff1_0.637037_epoch0014.pt
+2026-07-05 17:55:58 [INFO] Epoch 15 [500/1500] loss=0.0134 onset=0.0068 frame=0.0046 offset=0.0021
+2026-07-05 17:57:31 [INFO] Epoch 15 [1000/1500] loss=0.0218 onset=0.0113 frame=0.0081 offset=0.0024
+2026-07-05 17:59:04 [INFO] Epoch 15 [1500/1500] loss=0.0203 onset=0.0098 frame=0.0080 offset=0.0025
+2026-07-05 17:59:37 [INFO] Epoch 15/1300 | train_loss=0.0189 | val_loss=0.0150 | COn_f1=0.8731 | COnP_f1=0.8643 | COnPOff_f1=0.7174 | sig_onset=0.0053 sig_frame=0.0123 | thresh(on=0.85,fr=0.40,off=0.15) | lr=1.00e-04
+2026-07-05 17:59:37 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 17:59:37 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8643
+2026-07-05 18:00:54 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8448 | COnP_f1=0.8163 | COnPOff_f1=0.6373
+2026-07-05 18:00:58 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.844763_epoch0015.pt, conp2_0.816291_epoch0015.pt, conpoff1_0.637286_epoch0015.pt
+2026-07-05 18:02:33 [INFO] Epoch 16 [500/1500] loss=0.0191 onset=0.0092 frame=0.0072 offset=0.0028
+2026-07-05 18:04:06 [INFO] Epoch 16 [1000/1500] loss=0.0151 onset=0.0069 frame=0.0058 offset=0.0024
+2026-07-05 18:05:39 [INFO] Epoch 16 [1500/1500] loss=0.0166 onset=0.0085 frame=0.0057 offset=0.0024
+2026-07-05 18:06:36 [INFO]   Threshold search: best on=0.80, fr=0.55, off=0.20, COn_f1=0.8735, COnP_f1=0.8635, COnPOff_f1=0.7142, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 18:07:14 [INFO] Epoch 16/1300 | train_loss=0.0185 | val_loss=0.0150 | COn_f1=0.8748 | COnP_f1=0.8651 | COnPOff_f1=0.7201 | sig_onset=0.0053 sig_frame=0.0125 | thresh(on=0.80,fr=0.55,off=0.20) | lr=1.00e-04
+2026-07-05 18:07:14 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 18:07:14 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8651
+2026-07-05 18:08:44 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8449 | COnP_f1=0.8163 | COnPOff_f1=0.6355
+2026-07-05 18:08:48 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.844950_epoch0016.pt, conp2_0.816328_epoch0016.pt
+2026-07-05 18:10:23 [INFO] Epoch 17 [500/1500] loss=0.0184 onset=0.0091 frame=0.0067 offset=0.0026
+2026-07-05 18:11:56 [INFO] Epoch 17 [1000/1500] loss=0.0176 onset=0.0089 frame=0.0060 offset=0.0026
+2026-07-05 18:13:29 [INFO] Epoch 17 [1500/1500] loss=0.0222 onset=0.0116 frame=0.0078 offset=0.0029
+2026-07-05 18:13:59 [INFO] Epoch 17/1300 | train_loss=0.0182 | val_loss=0.0148 | COn_f1=0.8780 | COnP_f1=0.8689 | COnPOff_f1=0.7093 | sig_onset=0.0054 sig_frame=0.0130 | thresh(on=0.80,fr=0.55,off=0.20) | lr=1.00e-04
+2026-07-05 18:13:59 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 18:13:59 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8689
+2026-07-05 18:15:16 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8425 | COnP_f1=0.8130 | COnPOff_f1=0.6080
+2026-07-05 18:16:54 [INFO] Epoch 18 [500/1500] loss=0.0219 onset=0.0108 frame=0.0086 offset=0.0025
+2026-07-05 18:18:27 [INFO] Epoch 18 [1000/1500] loss=0.0165 onset=0.0087 frame=0.0055 offset=0.0023
+2026-07-05 18:20:00 [INFO] Epoch 18 [1500/1500] loss=0.0229 onset=0.0125 frame=0.0075 offset=0.0029
+2026-07-05 18:20:51 [INFO]   Threshold search: best on=0.80, fr=0.60, off=0.20, COn_f1=0.8811, COnP_f1=0.8734, COnPOff_f1=0.7309, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 18:21:18 [INFO] Epoch 18/1300 | train_loss=0.0178 | val_loss=0.0144 | COn_f1=0.8822 | COnP_f1=0.8749 | COnPOff_f1=0.7363 | sig_onset=0.0051 sig_frame=0.0124 | thresh(on=0.80,fr=0.60,off=0.20) | lr=1.00e-04
+2026-07-05 18:21:18 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 18:21:18 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8749
+2026-07-05 18:22:22 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8461 | COnP_f1=0.8173 | COnPOff_f1=0.6395
+2026-07-05 18:22:26 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.846087_epoch0018.pt, conp1_0.817278_epoch0018.pt, conpoff1_0.639470_epoch0018.pt
+2026-07-05 18:24:01 [INFO] Epoch 19 [500/1500] loss=0.0185 onset=0.0095 frame=0.0065 offset=0.0025
+2026-07-05 18:25:34 [INFO] Epoch 19 [1000/1500] loss=0.0126 onset=0.0057 frame=0.0050 offset=0.0019
+2026-07-05 18:27:07 [INFO] Epoch 19 [1500/1500] loss=0.0152 onset=0.0081 frame=0.0049 offset=0.0022
+2026-07-05 18:27:37 [INFO] Epoch 19/1300 | train_loss=0.0176 | val_loss=0.0142 | COn_f1=0.8845 | COnP_f1=0.8773 | COnPOff_f1=0.7395 | sig_onset=0.0052 sig_frame=0.0127 | thresh(on=0.80,fr=0.60,off=0.20) | lr=9.99e-05
+2026-07-05 18:27:37 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 18:27:37 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8773
+2026-07-05 18:28:47 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8441 | COnP_f1=0.8148 | COnPOff_f1=0.6329
+2026-07-05 18:30:22 [INFO] Epoch 20 [500/1500] loss=0.0158 onset=0.0085 frame=0.0049 offset=0.0023
+2026-07-05 18:31:54 [INFO] Epoch 20 [1000/1500] loss=0.0168 onset=0.0085 frame=0.0064 offset=0.0018
+2026-07-05 18:33:28 [INFO] Epoch 20 [1500/1500] loss=0.0118 onset=0.0062 frame=0.0038 offset=0.0018
+2026-07-05 18:34:24 [INFO]   Threshold search: best on=0.80, fr=0.60, off=0.10, COn_f1=0.8837, COnP_f1=0.8768, COnPOff_f1=0.7299, stage1=285 combos, stage2=28 combos, workers=12
+2026-07-05 18:34:58 [INFO] Epoch 20/1300 | train_loss=0.0173 | val_loss=0.0143 | COn_f1=0.8842 | COnP_f1=0.8770 | COnPOff_f1=0.7342 | sig_onset=0.0051 sig_frame=0.0126 | thresh(on=0.80,fr=0.60,off=0.10) | lr=9.99e-05
+2026-07-05 18:34:58 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 18:36:33 [INFO] Epoch 21 [500/1500] loss=0.0169 onset=0.0083 frame=0.0063 offset=0.0023
+2026-07-05 18:38:06 [INFO] Epoch 21 [1000/1500] loss=0.0197 onset=0.0108 frame=0.0063 offset=0.0027
+2026-07-05 18:39:39 [INFO] Epoch 21 [1500/1500] loss=0.0178 onset=0.0096 frame=0.0057 offset=0.0024
+2026-07-05 18:40:12 [INFO] Epoch 21/1300 | train_loss=0.0170 | val_loss=0.0134 | COn_f1=0.8873 | COnP_f1=0.8820 | COnPOff_f1=0.7406 | sig_onset=0.0052 sig_frame=0.0124 | thresh(on=0.80,fr=0.60,off=0.10) | lr=9.99e-05
+2026-07-05 18:40:12 [INFO]   GPU peak memory: allocated=12.84 GiB | reserved=12.96 GiB
+2026-07-05 18:40:12 [INFO]   -> New val-best epoch recorded. COnP_f1=0.8820

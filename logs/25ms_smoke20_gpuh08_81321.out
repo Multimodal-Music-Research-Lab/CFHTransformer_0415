@@ -1,0 +1,44 @@
+python /public_hw/home/cit_ylju/conda_envs/mert_old_py312_cu121/bin/python
+python_version 3.12.13
+torch 2.5.1+cu121 cuda 12.1
+transformers 4.41.2
+cuda_available True
+cuda_device_count 1
+gpu NVIDIA H100 80GB HBM3
+2026-06-22 00:33:10 [INFO] Run directory: /public_hw/home/cit_ylju/yinlin/cft研究/code/ssl_cft/mert25ms其他改进/mert_cft-main_baseline_baseline_25ms_baseline/outputs/run_mert_cft22_mix_pitch_3src/20260622_003310_COnP
+2026-06-22 00:33:10 [INFO] Device: cuda
+2026-06-22 00:33:10 [INFO] Config: {'data': {'dataset_name': 'original', 'input_type': 'waveform', 'audio_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal_wav', 'label_path': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/MIR-ST500_corrected.json', 'splits_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/code/ssl_cft/mert25ms其他改进/mert_cft-main_baseline_baseline_25ms_baseline/splits_v11', 'cqt_cache_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/cqt_cache_50ms/npy', 'train_mix_sources': [{'name': 'original', 'audio_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal_wav', 'label_path': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/MIR-ST500_corrected.json', 'splits_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/code/ssl_cft/mert25ms其他改进/mert_cft-main_baseline_baseline_25ms_baseline/splits_v11', 'cqt_cache_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/cqt_cache_50ms/npy'}, {'name': 'pitch_shift', 'audio_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调_wav', 'label_path': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调/MIR-ST500_corrected.json', 'splits_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调/splits_v11', 'cqt_cache_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调/cqt_cache_50ms/npy'}, {'name': 'pitch_shift_complement', 'audio_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400_wav', 'label_path': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400/MIR-ST500_corrected.json', 'splits_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400/splits_v11', 'cqt_cache_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400/cqt_cache_50ms/npy'}], 'sample_rate': 24000, 'segment_frames': 512, 'infer_chunk_frames': 512, 'max_samples_per_epoch': 12000}, 'audio': {'hop_length': 600, 'cqt_bins': 288, 'bins_per_octave': 48, 'n_octaves': 6, 'fmin': 48.9994}, 'model': {'frontend_type': 'wav2vec2', 'wav2vec_path': '/public_hw/home/cit_ylju/yinlin/cft研究/pretrained/MERT-v1-95M', 'wav2vec_freeze_feature_encoder': True, 'wav2vec_dropout': 0.1, 'h_dim': 128, 'conv_channels': 32, 'num_cycles': 2, 'num_transformer_layers': 1, 'nhead_fh': 8, 'nhead_ht': 8, 'nhead_tf': 6, 'dim_feedforward': 512, 'dropout': 0.1, 'num_pitches': 48, 'midi_min': 36, 'cqt_mean': -65.0, 'cqt_std': 18.0}, 'training': {'batch_size': 8, 'num_workers': 4, 'learning_rate': 0.0001, 'backbone_learning_rate': 1e-05, 'epochs': 1300, 'run_dir': '/public_hw/home/cit_ylju/yinlin/cft研究/code/ssl_cft/mert25ms其他改进/mert_cft-main_baseline_baseline_25ms_baseline/outputs/run_mert_cft22_mix_pitch_3src', 'save_every': 50, 'grad_clip': 1.0, 'warmup_epochs': 0, 'threshold_search_every': 2, 'threshold_workers': 12, 'threshold_top_k_onset_frame': 2, 'ranked_update_patience': 50}, 'loss': {'onset_weight': 1.0, 'offset_weight': 1.0, 'frame_weight': 1.0, 'onset_pos_weight': 5.0}}
+2026-06-22 00:33:10 [INFO] ============================================================
+2026-06-22 00:33:10 [INFO] CFT v6_0415 — train_conp.py (best model: COnP F1)
+2026-06-22 00:33:10 [INFO] ============================================================
+2026-06-22 00:33:10 [INFO] Loaded GT annotations from /public_hw/home/cit_ylju/yinlin/cft研究/datasets/MIR-ST500_corrected.json
+2026-06-22 00:33:17 [INFO] Train samples: 40644, Val songs: 40, Test songs: 100, Test monitor songs: 100
+WARNING: feature_extractor_cqt requires the libray 'nnAudio'
+2026-06-22 00:33:21 [INFO] Model parameters: 98,347,888
+2026-06-22 00:33:21 [INFO] Tokenization: continuous kernels [3,5,7] (paper-aligned, no dilation)
+2026-06-22 00:33:21 [INFO] Mixed precision (AMP) enabled
+2026-06-22 00:33:24 [INFO] Optimizer: Adam(frontend=1.00e-05, others=1.00e-04)
+2026-06-22 00:33:24 [INFO] Scheduler: CosineAnnealingLR (no warmup, T_max=1300)
+2026-06-22 00:33:24 [INFO] Max batches per epoch: 1500
+2026-06-22 00:33:24 [INFO] Threshold search: every=2, workers=12, top_k_onset_frame=2
+2026-06-22 00:33:24 [INFO] Ranked checkpoint early stop patience: 50 epochs
+2026-06-22 00:35:00 [INFO] Epoch 1 [500/1500] loss=0.0405 onset=0.0198 frame=0.0162 offset=0.0045
+2026-06-22 00:36:33 [INFO] Epoch 1 [1000/1500] loss=0.0437 onset=0.0226 frame=0.0158 offset=0.0052
+2026-06-22 00:38:05 [INFO] Epoch 1 [1500/1500] loss=0.0294 onset=0.0157 frame=0.0101 offset=0.0036
+2026-06-22 00:38:55 [INFO]   Threshold search: best on=0.85, fr=0.50, off=0.20, COn_f1=0.8000, COnP_f1=0.7665, COnPOff_f1=0.5218, stage1=285 combos, stage2=28 combos, workers=12
+2026-06-22 00:39:22 [INFO] Epoch 1/1300 | train_loss=0.1203 | val_loss=0.0280 | COn_f1=0.8027 | COnP_f1=0.7707 | COnPOff_f1=0.5255 | sig_onset=0.0066 sig_frame=0.0132 | thresh(on=0.85,fr=0.50,off=0.20) | lr=1.00e-04
+2026-06-22 00:39:22 [INFO]   GPU peak memory: allocated=12.76 GiB | reserved=12.90 GiB
+2026-06-22 00:39:22 [INFO]   -> New val-best epoch recorded. COnP_f1=0.7707
+2026-06-22 00:41:02 [INFO]   [TEST MONITOR FULL TEST:periodic_40+best] COn_f1=0.8033 | COnP_f1=0.7680 | COnPOff_f1=0.5093
+2026-06-22 00:41:04 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.803313_epoch0001.pt, conp1_0.768023_epoch0001.pt, conpoff1_0.509345_epoch0001.pt
+2026-06-22 00:42:38 [INFO] Epoch 2 [500/1500] loss=0.0313 onset=0.0154 frame=0.0122 offset=0.0038
+2026-06-22 00:44:11 [INFO] Epoch 2 [1000/1500] loss=0.0348 onset=0.0176 frame=0.0131 offset=0.0041
+2026-06-22 00:45:44 [INFO] Epoch 2 [1500/1500] loss=0.0358 onset=0.0203 frame=0.0115 offset=0.0040
+2026-06-22 00:46:38 [INFO]   Threshold search: best on=0.80, fr=0.70, off=0.15, COn_f1=0.8103, COnP_f1=0.7840, COnPOff_f1=0.5764, stage1=285 combos, stage2=28 combos, workers=12
+2026-06-22 00:47:10 [INFO] Epoch 2/1300 | train_loss=0.0302 | val_loss=0.0236 | COn_f1=0.8137 | COnP_f1=0.7883 | COnPOff_f1=0.5856 | sig_onset=0.0063 sig_frame=0.0132 | thresh(on=0.80,fr=0.70,off=0.15) | lr=1.00e-04
+2026-06-22 00:47:10 [INFO]   GPU peak memory: allocated=12.76 GiB | reserved=12.90 GiB
+2026-06-22 00:47:10 [INFO]   -> New val-best epoch recorded. COnP_f1=0.7883
+2026-06-22 00:48:13 [INFO]   [TEST MONITOR FULL TEST:best] COn_f1=0.8147 | COnP_f1=0.7853 | COnPOff_f1=0.5800
+2026-06-22 00:48:16 [INFO]   -> Ranked checkpoints updated from test100 monitor: con1_0.814675_epoch0002.pt, conp1_0.785344_epoch0002.pt, conpoff1_0.580036_epoch0002.pt
+2026-06-22 00:49:51 [INFO] Epoch 3 [500/1500] loss=0.0373 onset=0.0204 frame=0.0125 offset=0.0043
+2026-06-22 00:51:24 [INFO] Epoch 3 [1000/1500] loss=0.0234 onset=0.0137 frame=0.0072 offset=0.0025

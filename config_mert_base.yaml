@@ -1,0 +1,78 @@
+data:
+  dataset_name: original
+  input_type: waveform
+  audio_dir: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal_wav/'
+  label_path: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/MIR-ST500_corrected.json'
+  splits_dir: './splits_v11/'
+  cqt_cache_dir: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/cqt_cache_50ms/npy/'
+  train_mix_sources:
+    - name: original
+      audio_dir: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal_wav/'
+      label_path: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/MIR-ST500_corrected.json'
+      splits_dir: './splits_v11/'
+      cqt_cache_dir: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/cqt_cache_50ms/npy/'
+    - name: pitch_shift
+      audio_dir: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调_wav/'
+      label_path: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调/MIR-ST500_corrected.json'
+      splits_dir: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调/splits_v11/'
+      cqt_cache_dir: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调/cqt_cache_50ms/npy/'
+    - name: pitch_shift_complement
+      audio_dir: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400_wav/'
+      label_path: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400/MIR-ST500_corrected.json'
+      splits_dir: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400/splits_v11/'
+      cqt_cache_dir: '/public_hw/home/cit_ylju/yinlin/cft研究/datasets/vocal变调补充另外400/cqt_cache_50ms/npy/'
+  sample_rate: 24000
+  segment_frames: 512
+  infer_chunk_frames: 512
+  max_samples_per_epoch: 12000
+
+audio:
+  hop_length: 600
+  cqt_bins: 288
+  bins_per_octave: 48
+  n_octaves: 6
+  fmin: 48.9994
+
+model:
+  frontend_type: wav2vec2
+  wav2vec_path: '/public_hw/home/cit_ylju/yinlin/cft研究/pretrained/MERT-v1-95M'
+  wav2vec_freeze_feature_encoder: true
+  wav2vec_dropout: 0.1
+  wav2vec_temporal_adapter: true
+  wav2vec_temporal_kernel: 5
+  wav2vec_temporal_dropout: 0.1
+  wav2vec_temporal_init_scale: 0.001
+  h_dim: 128
+  conv_channels: 32
+  num_cycles: 2
+  num_transformer_layers: 1
+  nhead_fh: 8
+  nhead_ht: 8
+  nhead_tf: 6
+  dim_feedforward: 512
+  dropout: 0.1
+  num_pitches: 48
+  midi_min: 36
+  cqt_mean: -65.0
+  cqt_std: 18.0
+
+training:
+  batch_size: 8
+  num_workers: 4
+  learning_rate: 0.0001
+  backbone_learning_rate: 0.00001
+  epochs: 1300
+  run_dir: './outputs/run_mert_cft22_mix_pitch_3src'
+  save_every: 50
+  grad_clip: 1.0
+  warmup_epochs: 0
+  threshold_search_every: 2
+  threshold_workers: 12
+  threshold_top_k_onset_frame: 2
+  ranked_update_patience: 50
+
+loss:
+  onset_weight: 1.0
+  offset_weight: 1.0
+  frame_weight: 1.0
+  onset_pos_weight: 5.0

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.pyo
+v10/**/__pycache__/
+v10/**/*.pyc
+v10/run/*/checkpoints/
+v10/**/*.pt
